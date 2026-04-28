@@ -76,13 +76,20 @@ contract CrossChainEscrow is AccessControl, Pausable, ReentrancyGuard {
     }
 
     function _executeCCTPRelease(Escrow storage e) internal {
-        usdc.safeIncreaseAllowance(address(tokenMessenger), e.amount);
+        // Direct approve call - SafeERC20 methods don't work with Arc's native USDC precompile
+        (bool success, ) = address(usdc).call(
+            abi.encodeWithSignature("approve(address,uint256)", address(tokenMessenger), e.amount)
+        );
+        require(success, "USDC approve failed");
 
         tokenMessenger.depositForBurn(
             e.amount,
             e.destinationDomain,
             e.mintRecipient,
-            address(usdc)
+            address(usdc),
+            bytes32(0),
+            0,
+            2000
         );
     }
 

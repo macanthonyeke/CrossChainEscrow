@@ -28,6 +28,9 @@ contract MockTokenMessenger is ITokenMessenger {
         uint32 destinationDomain;
         bytes32 mintRecipient;
         address burnToken;
+        bytes32 destinationCaller;
+        uint256 maxFee;
+        uint256 minFinalityThreshold;
         address caller;
     }
 
@@ -38,9 +41,11 @@ contract MockTokenMessenger is ITokenMessenger {
         uint256 amount,
         uint32 destinationDomain,
         bytes32 mintRecipient,
-        address burnToken
+        address burnToken,
+        bytes32 destinationCaller,
+        uint256 maxFee,
+        uint256 minFinalityThreshold
     ) external override returns (uint64 nonce) {
-        // pull tokens out of caller, mimicking CCTP burn
         ERC20(burnToken).transferFrom(msg.sender, address(this), amount);
         totalBurned += amount;
         calls.push(Call({
@@ -48,6 +53,9 @@ contract MockTokenMessenger is ITokenMessenger {
             destinationDomain: destinationDomain,
             mintRecipient: mintRecipient,
             burnToken: burnToken,
+            destinationCaller: destinationCaller,
+            maxFee: maxFee,
+            minFinalityThreshold: minFinalityThreshold,
             caller: msg.sender
         }));
         nonce = ++nonceCounter;

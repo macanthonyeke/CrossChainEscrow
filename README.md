@@ -169,9 +169,9 @@ Arbiters **cannot** pause. Pausers **cannot** resolve disputes. The admin can ro
 
 | Item | Value |
 |---|---|
-| `CrossChainEscrow` | `0x40578614D58dF066ED0233DCD792b5c069b9b9C5` |
+| `CrossChainEscrow` | `0x80Bc8A905C01Ae841E5F3B98824B903A76896266` |
 | USDC | `0x3600000000000000000000000000000000000000` |
-| CCTP v2 TokenMessenger | `0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d` |
+| CCTP v2 TokenMessenger | `0x8FE6B999Dc680CcFDD5Bf7EB0974218be2542DAA` |
 | RPC URL | `https://rpc.testnet.arc.network` |
 | Chain ID | `5042002` |
 | Explorer | https://testnet.arcscan.app |

@@ -6,7 +6,7 @@ import {CrossChainEscrow} from "../src/CrossChainEscrow.sol";
 
 contract DeployCrossChainEscrow is Script {
     address constant USDC_ARC_TESTNET = 0x3600000000000000000000000000000000000000;
-    address constant TOKEN_MESSENGER_ARC_TESTNET = 0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d;
+    address constant TOKEN_MESSENGER_ARC_TESTNET = 0x8FE6B999Dc680CcFDD5Bf7EB0974218be2542DAA;
 
     function run() external returns (CrossChainEscrow escrow) {
         uint256 deployerKey = vm.envUint("PRIVATE_KEY");

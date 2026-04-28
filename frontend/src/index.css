@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-950 text-slate-200 font-sans antialiased;
+  background-image:
+    radial-gradient(60rem 40rem at 10% -10%, rgba(139, 92, 246, 0.12), transparent 60%),
+    radial-gradient(50rem 30rem at 110% 10%, rgba(34, 211, 238, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl bg-ink-900/80 backdrop-blur border border-white/5 shadow-soft;
+  }
+  .card-hover {
+    @apply transition-all hover:border-white/10 hover:bg-ink-800/80;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium
+           transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60;
+  }
+  .btn-primary {
+    @apply btn text-white
+           bg-gradient-to-r from-accent-purple to-accent-cyan
+           hover:shadow-glow hover:brightness-110;
+  }
+  .btn-secondary {
+    @apply btn bg-white/5 border border-white/10 text-slate-200
+           hover:bg-white/10 hover:border-white/20;
+  }
+  .btn-danger {
+    @apply btn bg-rose-500/10 border border-rose-500/30 text-rose-300
+           hover:bg-rose-500/20 hover:border-rose-500/50;
+  }
+  .btn-ghost {
+    @apply btn text-slate-400 hover:text-slate-200 hover:bg-white/5;
+  }
+  .input {
+    @apply w-full px-3.5 py-2.5 rounded-lg bg-ink-800/80 border border-white/5
+           text-slate-100 placeholder:text-slate-500
+           focus:outline-none focus:border-accent-purple/50 focus:ring-2 focus:ring-accent-purple/20
+           transition-colors font-mono text-sm;
+  }
+  .select {
+    @apply input appearance-none pr-10 bg-no-repeat cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+  }
+  .label {
+    @apply block text-xs font-medium text-slate-400 uppercase tracking-wider mb-1.5;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  .kbd {
+    @apply font-mono text-[11px] px-1.5 py-0.5 rounded border border-white/10 bg-white/5 text-slate-400;
+  }
+  .divider {
+    @apply h-px bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+}
