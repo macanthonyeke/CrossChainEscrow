@@ -9,6 +9,6 @@ interface ITokenMessenger {
         address burnToken,
         bytes32 destinationCaller,
         uint256 maxFee,
-        uint256 minFinalityThreshold
-    ) external returns (uint64 nonce);
+        uint32 minFinalityThreshold
+    ) external;
 }

@@ -21,8 +21,6 @@ contract MockUSDC is ERC20 {
 // tokens out of the caller via transferFrom. This keeps the escrow
 // contract's USDC balance accurate so solvency invariants hold.
 contract MockTokenMessenger is ITokenMessenger {
-    uint64 public nonceCounter;
-
     struct Call {
         uint256 amount;
         uint32 destinationDomain;
@@ -30,7 +28,7 @@ contract MockTokenMessenger is ITokenMessenger {
         address burnToken;
         bytes32 destinationCaller;
         uint256 maxFee;
-        uint256 minFinalityThreshold;
+        uint32 minFinalityThreshold;
         address caller;
     }
 
@@ -44,8 +42,8 @@ contract MockTokenMessenger is ITokenMessenger {
         address burnToken,
         bytes32 destinationCaller,
         uint256 maxFee,
-        uint256 minFinalityThreshold
-    ) external override returns (uint64 nonce) {
+        uint32 minFinalityThreshold
+    ) external override {
         ERC20(burnToken).transferFrom(msg.sender, address(this), amount);
         totalBurned += amount;
         calls.push(Call({
@@ -58,7 +56,6 @@ contract MockTokenMessenger is ITokenMessenger {
             minFinalityThreshold: minFinalityThreshold,
             caller: msg.sender
         }));
-        nonce = ++nonceCounter;
     }
 
     function callsLength() external view returns (uint256) {
